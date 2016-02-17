@@ -45,7 +45,7 @@
 	
 	switch (listType) {
 		case WALArticleListTypeUnread:
-			urlString = [self.settings getHomeFeedURL].absoluteString;
+			urlString = [self.settings getUnreadFeedURL].absoluteString;
 			break;
 			
 		case WALArticleListTypeFavorites:

@@ -28,7 +28,7 @@
 - (IBAction)textFieldValueChanged:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *urlTextField;
-@property (weak, nonatomic) IBOutlet UITextField *userIDTextField;
+@property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *apiTokenTextField;
 @end
 
@@ -53,7 +53,7 @@
 	if ([self.currentSettings getWallabagURL] && self.currentSettings.apiToken)
 	{
 		self.urlTextField.text = [[self.currentSettings getWallabagURL] absoluteString];
-		self.userIDTextField.text = [NSString stringWithFormat:@"%ld", (long)self.currentSettings.userID];
+		self.userNameTextField.text = self.currentSettings.userName;
 		self.apiTokenTextField.text = self.currentSettings.apiToken;
 	}
 	[self updateDoneButton];
@@ -186,7 +186,7 @@
 {
 	self.currentSettings.wallabagURL = [NSURL URLWithString:self.urlTextField.text];
 	self.currentSettings.apiToken = self.apiTokenTextField.text;
-	self.currentSettings.userID = [self.userIDTextField.text integerValue];
+	self.currentSettings.userName = self.userNameTextField.text;
 	
 	[self.delegate settingsController:self didFinishWithSettings:self.currentSettings];
 }

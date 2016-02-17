@@ -16,13 +16,13 @@
 - (void) setWallabagURL:(NSURL*) url;
 - (NSURL*) getWallabagURL;
 
-- (NSURL*) getHomeFeedURL;
+- (NSURL*) getUnreadFeedURL;
 - (NSURL*) getFavoriteFeedURL;
 - (NSURL*) getArchiveFeedURL;
 
 - (NSURL*) getURLToAddArticle:(NSURL*) articleURL;
 
-@property NSInteger userID;
+@property NSString *userName;
 @property (strong) NSString *apiToken;
 
 @end

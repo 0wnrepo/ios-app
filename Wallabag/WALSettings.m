@@ -31,7 +31,7 @@
 	}
 	
 	settings.wallabagURL = [defaults URLForKey:@"wallabagURL"];
-	settings.userID = [defaults integerForKey:@"userID"];
+	settings.userName = [defaults stringForKey:@"userName"];
 	settings.apiToken = [defaults stringForKey:@"apiToken"];
 	
 	if ((settings.baseURL == nil || settings.apiToken == nil) && fallback)
@@ -51,7 +51,7 @@
 	NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:kWallabagAppGroupId];
 	
 	[defaults setURL:self.baseURL forKey:@"wallabagURL"];
-	[defaults setInteger:self.userID forKey:@"userID"];
+	[defaults setObject:self.userName forKey:@"userName"];
 	[defaults setObject:self.apiToken forKey:@"apiToken"];
 	[defaults synchronize];
 }
@@ -83,21 +83,20 @@
 {
 	if (!self.baseURL)
 		return nil;
-	
-	NSURL *resultURL = [NSURL URLWithString:[NSString stringWithFormat:@"index.php?feed&type=%@&user_id=%ld&token=%@", feedName, (long) self.userID, self.apiToken]
-							  relativeToURL:self.baseURL];
-	
+    
+    NSURL *resultURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@.xml",self.userName,self.apiToken,feedName] relativeToURL:self.baseURL];
+    
 	return resultURL;
 }
 
-- (NSURL *)getHomeFeedURL
+-(NSURL *) getUnreadFeedURL
 {
-	return [self getFeedURLWithFeedName:@"home"];
+    return [self getFeedURLWithFeedName:@"unread"];
 }
 
 - (NSURL*) getFavoriteFeedURL
 {
-	return [self getFeedURLWithFeedName:@"fav"];
+	return [self getFeedURLWithFeedName:@"starred"];
 }
 
 - (NSURL *)getArchiveFeedURL

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -527,7 +527,7 @@
                     <connections>
                         <outlet property="apiTokenTextField" destination="irP-Tq-7pY" id="fvy-Nb-4qs"/>
                         <outlet property="urlTextField" destination="XYS-sB-WWu" id="M8c-I0-Qoa"/>
-                        <outlet property="userIDTextField" destination="ZUI-D1-IIr" id="YlB-nz-yDS"/>
+                        <outlet property="userNameTextField" destination="ZUI-D1-IIr" id="ONI-yv-jR9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gzG-Am-nTb" userLabel="First Responder" sceneMemberID="firstResponder"/>
