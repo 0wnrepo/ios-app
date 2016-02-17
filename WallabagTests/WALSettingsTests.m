@@ -27,125 +27,125 @@
     [super tearDown];
 }
 
-- (void)testHomeFeedURL_domainWithHTTP_correctFeedURL
+- (void)testUnreadFeedURL_domainWithHTTP_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"http://example.com/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"http://example.com/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"http://example.com/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_domainWithHTTPS_correctFeedURL
+- (void)testUnreadFeedURL_domainWithHTTPS_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://example.com/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://example.com/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://example.com/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_withTrailingSlashInBaseURL_correctFeedURL
+- (void)testUnreadFeedURL_withTrailingSlashInBaseURL_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://example.com/wallabag/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://example.com/wallabag/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://example.com/wallabag/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_withoutTrailingSlashInBaseURL_correctFeedURL
+- (void)testUnreadFeedURL_withoutTrailingSlashInBaseURL_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://example.com/wallabag"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://example.com/wallabag/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://example.com/wallabag/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_subdomainWithTrailingSlash_correctFeedURL
+- (void)testUnreadFeedURL_subdomainWithTrailingSlash_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://wallabag.example.com/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://wallabag.example.com/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://wallabag.example.com/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_subdomainWithoutTrailingSlash_correctFeedURL
+- (void)testUnreadFeedURL_subdomainWithoutTrailingSlash_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://wallabag.example.com"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://wallabag.example.com/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://wallabag.example.com/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_domainWithTrailingSlash_correctFeedURL
+- (void)testUnreadFeedURL_domainWithTrailingSlash_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://wallabag.com/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://wallabag.com/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://wallabag.com/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
-- (void)testHomeFeedURL_domainWithoutTrailingSlash_correctFeedURL
+- (void)testUnreadFeedURL_domainWithoutTrailingSlash_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"https://wallabag.com"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"https://wallabag.com/index.php?feed&type=home&user_id=1&token=abc123";
+	NSString *expectedResult = @"https://wallabag.com/wallabag/abc123/unread.xml";
 	
-	XCTAssertNotNil([self.settings getHomeFeedURL]);
+	XCTAssertNotNil([self.settings getUnreadFeedURL]);
 	
-	NSString *resultString = [self.settings getHomeFeedURL].absoluteString;
+	NSString *resultString = [self.settings getUnreadFeedURL].absoluteString;
 	XCTAssert([expectedResult isEqualToString:resultString], @"Expected: %@ Got: %@", expectedResult, resultString);
 }
 
 - (void)testFavoriteFeedURL_domainWithHTTP_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"http://example.com/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"http://example.com/index.php?feed&type=fav&user_id=1&token=abc123";
+	NSString *expectedResult = @"http://example.com/wallabag/abc123/starred.xml";
 	
 	XCTAssertNotNil([self.settings getFavoriteFeedURL]);
 	
@@ -156,10 +156,10 @@
 - (void)testArchiveFeedURL_domainWithHTTP_correctFeedURL
 {
 	self.settings.wallabagURL = [NSURL URLWithString:@"http://example.com/"];
-	self.settings.userID = 1;
+	self.settings.userName = @"wallabag";
 	self.settings.apiToken = @"abc123";
 	
-	NSString *expectedResult = @"http://example.com/index.php?feed&type=archive&user_id=1&token=abc123";
+	NSString *expectedResult = @"http://example.com/wallabag/abc123/archive.xml";
 	
 	XCTAssertNotNil([self.settings getArchiveFeedURL]);
 	
